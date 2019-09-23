@@ -1,0 +1,100 @@
+
+.card-vide-header {
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+
+  video {
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+    min-height: 208px;
+    object-fit:cover;
+  }
+}
+
+.logo-img {
+  img {
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+
+.card-loja {
+  background: #f7f7f7;
+
+  .md-card-content {
+
+    .md-card-media {
+      img {
+        max-height: 160px;
+        width: auto;
+      }
+      cursor: pointer;
+    }
+  }
+
+  .image {
+    .md-button {
+      $s: 32px;
+      min-width: $s !important;
+      max-width: $s !important;
+      padding: 0px !important;
+      line-height: 0px !important;
+    }
+  }
+
+  .md-checkbox {
+    label {
+      position: relative;
+      top: -0.1rem;
+    }
+  }
+}
+
+.add-item {
+  position: fixed;
+  z-index: 3;
+  right: 8px;
+  bottom: 8px;
+  $s: 5rem;
+  width: $s;
+  height: $s;
+  border-radius: 50%;
+  border: 1px solid #561;
+  .md-button-content {
+    font-size: 2rem;
+    font-weight: 800;
+  }
+}
+
+.loading {
+  position: fixed;
+  z-index: 4;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  background: rgba(255,255,255,0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-mural {
+  .ck-file-dialog-button,
+  div.ck.ck-sticky-panel__content > div > div:nth-child(11)
+   {
+    display: none;
+  }
+}
+
+.sub-card {
+  md-card-footer {
+    > div {
+      padding-right: 16px;
+    }
+  }
+}

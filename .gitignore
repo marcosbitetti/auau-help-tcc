@@ -1,0 +1,6 @@
+cadastro-cupons/node_modules/
+frontend/node_modules/
+frontend/dist/
+server/public/uploads/*.jpg
+server/public/uploads/*.png
+package-lock.json
