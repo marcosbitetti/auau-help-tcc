@@ -75,7 +75,6 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     margin: 4,
     padding: 20,
-    backgroundColor: "#dcda48",
     width: parseInt(width/2) - 32,
     minHeight: parseInt(width/2) - 32,
   },
@@ -83,9 +82,23 @@ const styles = StyleSheet.create({
   listItemLarge: {
     width: width - 8,
     minWidth: width - 8,
-    backgroundColor: 'red',
+    //backgroundColor: 'red',
     //flexGrow: 0,
     //flex: 0,
+  },
+
+  listItemImage: {
+    borderWidth: 1,
+    borderColor: '#999',
+
+    shadowColor: "#000",
+    shadowOffset: {
+    	width: 0,
+    	height: 2,
+    },
+    shadowOpacity: 0.98,
+    shadowRadius: 2.0,
+    elevation: 4,
   },
 
 
@@ -93,4 +106,7 @@ const styles = StyleSheet.create({
 
 exports.logoHeight = logoHeight
 exports.colors = colors
+exports.width = width
+exports.height = height
+exports.top = Constants.statusBarHeight
 export default styles

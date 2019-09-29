@@ -4,15 +4,17 @@ import { View,
       ActivityIndicator,
       ScrollView ,
       FlatList,
-      StyleSheet} from 'react-native';
-
+      StyleSheet,
+      Image, ImageResizeMode } from 'react-native';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux'
+import {getEmpresas} from '../actions'
 import {colors} from '../Styles'
 import styles from '../Styles'
 
 import Logo from '../components/Logo'
 import HeaderBack from '../components/HeaderBack'
 
-import { connect } from 'react-redux'
 
 
 class Empresas extends React.Component {
@@ -22,6 +24,10 @@ class Empresas extends React.Component {
 
     this.state = {
     }
+  }
+
+  async componentDidMount() {
+    this.props.getEmpresas()
   }
 
   render() {
@@ -37,7 +43,18 @@ class Empresas extends React.Component {
             renderItem={({item,index,separators}) => {
               return (
                 <View style={[styles.listItem,(index==0?styles.listItemLarge:{})]}>
-                  <Text>{JSON.stringify(item)}</Text>
+                  {/* contain, cover, stretch, center, repeat */}
+                  {index!=1 && <View
+                    style={[{width:'100%',height:StyleSheet.flatten(styles.listItem).minHeight},styles.listItemImage,]} >
+                    <Image
+                      source={{
+                        uri: this.props.api + item.imagem,
+                        cache: 'only-if-cached',
+                      }}
+                      resizeMode={'stretch'}
+                      style={[{width:'100%',height:'100%'},]}
+                    />
+                  </View>}
                 </View>
               )
             }}
@@ -120,6 +137,11 @@ const s2 = StyleSheet.create({
 // conecta o reduxer com o application
 const mapStateToProps = store => ({
   empresas: store.appState.empresas,
+  api: store.appState.api,
 })
 
-export default connect(mapStateToProps)(Empresas)
+const mapDispatchToProps = dispatch => bindActionCreators( {
+  getEmpresas
+}, dispatch)
+
+export default connect(mapStateToProps,mapDispatchToProps)(Empresas)

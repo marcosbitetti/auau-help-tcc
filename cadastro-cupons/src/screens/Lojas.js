@@ -4,15 +4,18 @@ import { View,
       ActivityIndicator,
       ScrollView ,
       FlatList,
-      StyleSheet} from 'react-native';
+      StyleSheet,
+      Image} from 'react-native';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux'
 
 import {colors} from '../Styles'
 import styles from '../Styles'
-
+import {getLojas} from '../actions'
 import Logo from '../components/Logo'
 import HeaderBack from '../components/HeaderBack'
 
-import { connect } from 'react-redux'
+
 
 class Lojas extends React.Component {
 
@@ -21,6 +24,10 @@ class Lojas extends React.Component {
 
     this.state = {
     }
+  }
+
+  async componentDidMount() {
+    this.props.getLojas()
   }
 
   render() {
@@ -37,7 +44,17 @@ class Lojas extends React.Component {
             renderItem={({item,index,separators}) => {
               return (
                 <View style={[styles.listItem,]}>
-                  <Text>{JSON.stringify(item)}</Text>
+                  <View
+                    style={[{width:'100%',height:StyleSheet.flatten(styles.listItem).minHeight},styles.listItemImage,]} >
+                    <Image
+                      source={{
+                        uri: this.props.api + item.imagem,
+                        cache: 'only-if-cached',
+                      }}
+                      resizeMode={'stretch'}
+                      style={[{width:'100%',height:'100%',},]}
+                      />
+                    </View>
                 </View>
               )
             }}
@@ -84,6 +101,11 @@ const s2 = StyleSheet.create({
 // conecta o reduxer com o application
 const mapStateToProps = store => ({
   lojas: store.appState.lojas,
+  api: store.appState.api,
 })
 
-export default connect(mapStateToProps)(Lojas)
+const mapDispatchToProps = dispatch => bindActionCreators( {
+  getLojas
+}, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Lojas)

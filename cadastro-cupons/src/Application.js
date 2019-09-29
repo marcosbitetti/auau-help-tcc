@@ -1,9 +1,12 @@
 import React from 'react';
 import { View,
       Text,
+      Image,
       ActivityIndicator } from 'react-native'
 
 import { connect, Provider } from 'react-redux'
+
+
 import {Store} from './reducers'
 
 
@@ -12,13 +15,16 @@ import { registerRootComponent } from 'expo';
 import { activateKeepAwake } from 'expo-keep-awake';
 /* /expo only */
 
-import {colors} from './Styles'
+import {colors,width,height,top} from './Styles'
 import styles from './Styles'
 
 import Home from './screens/Home'
 import Empresas from './screens/Empresas'
 import Lojas from './screens/Lojas'
 import Avisos from './screens/Avisos'
+import PdV from './screens/PdV'
+import Campanha from './screens/Campanha'
+import OAB from './screens/OAB'
 
 if (__DEV__) {
   activateKeepAwake();
@@ -38,6 +44,8 @@ class Application extends React.Component {
     return (
       <View style={styles.appplicationContainer}>
 
+        <View style={{flex:1, position: 'absolute', zIndex:1, top:top, width: width, height: (height-top)}}>
+
         {/* carregamento generico */}
         {this.state.generalLoading &&
           <View style={[styles.loadingApplication,]}>
@@ -49,6 +57,15 @@ class Application extends React.Component {
         {this.props.page=='empresas' && <Empresas/>}
         {this.props.page=='lojas' && <Lojas/>}
         {this.props.page=='avisos' && <Avisos/>}
+        {this.props.page=='pdv' && <PdV/>}
+        {this.props.page=='campanha' && <Campanha/>}
+        {this.props.page=='oab' && <OAB/>}
+        </View>
+
+        <Image
+          style={{flex:1, position: 'absolute', zIndex:0,}}
+          source={require('./assets/bg.jpg')}
+        />
 
       </View>
     );

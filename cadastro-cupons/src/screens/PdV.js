@@ -4,14 +4,15 @@ import { View,
       ActivityIndicator,
       ScrollView ,
       FlatList,
-      StyleSheet} from 'react-native';
+      StyleSheet,
+      WebView} from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
 
 
-import {colors} from '../Styles'
+import {colors, width, height} from '../Styles'
 import styles from '../Styles'
-import {navigate} from '../actions'
+import {getPontoDeVenda} from '../actions'
 
 import Logo from '../components/Logo'
 import HeaderBack from '../components/HeaderBack'
@@ -27,26 +28,21 @@ class Avisos extends React.Component {
     }
   }
 
+  async componentDidMount() {
+    this.props.getPontoDeVenda()
+  }
+
   render() {
+    let data = this.props.html
+
     return (
       <View style={[styles.screen,]}>
-        <View style={[styles.screenContent,]}>
-          <Logo style={{marginBottom: 16,}}/>
+        <View style={[styles.screenContent,{paddingTop: 48,paddingBottom: 48}]}>
 
-          <Card
-            title="Campanhas"
-            onPress={() => this.props.navigate('campanha') }
-            />
-
-          <Card
-            title="Pontos de Vendas"
-            onPress={() => this.props.navigate('pdv') }
-            />
-
-          <Card
-            title="OAB"
-            onPress={() => this.props.navigate('oab') }
-            />
+          <WebView
+            source={{html:data}}
+            style={[s2.container]}
+          />
 
           <HeaderBack />
 
@@ -61,38 +57,21 @@ const s2 = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    flexDirection: 'column',
-    borderWidth: 1,
-    borderRadius: 0,
     borderColor: colors.background2,
     padding: 2,
-    width: '90%',
+    width: 300,
+    height: height,
   },
-  destaque: {
-    flex: 2,
-    width: '100%',
-  },
-  largo: {
-    flex: 1,
-    borderColor: 'black',
-    borderWidth: 1,
-    flexDirection: 'row',
-  },
-  medio: {
-    flex: 1,
-    borderColor: 'black',
-    borderWidth: 1,
-  }
 })
 
 
 // conecta o reduxer com o application
 const mapStateToProps = store => ({
-
+  html: store.appState.pdv,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators( {
-  navigate
+  getPontoDeVenda
 }, dispatch)
 
 export default connect(mapStateToProps,mapDispatchToProps)(Avisos)
