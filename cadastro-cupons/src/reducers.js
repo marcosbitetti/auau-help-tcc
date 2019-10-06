@@ -18,6 +18,7 @@ const initialAppState = {
   api: baseURL,
   empresas:[],
   lojas:[],
+  loja: {},
   pdv:'',
   campanha:'',
   oab:'',
@@ -34,7 +35,10 @@ const appReducer = (state = initialAppState,action) => {
       return {...state, lojas:[]}
     case ACT.GET_LOJAS_SUCCESS:
       //console.log(action.payload.data.data)
-      return {...state, lojas:action.payload.data.data}
+      let {data} = action.payload.data
+      // garante visualizacao de thumb
+      if (data.length%2==1) data.push( {id:0,imagem:null} )
+      return {...state, lojas:data}
     case ACT.GET_LOJAS_FAIL:
       //console.log(action.payload)
       return {...state, lojas:[]}
@@ -78,6 +82,9 @@ const appReducer = (state = initialAppState,action) => {
     case ACT.GET_OAB_SUCCESS:
       //console.log(action.payload)
       return {...state, oab:'Carregamento falhou!'}
+
+    case ACT.SET_LOJA:
+      return {...state, loja:action.payload.loja}
 
     default:
       return state

@@ -16,28 +16,29 @@ class Cupons extends React.Component {
 
   constructor(props) {
     super(props)
+    this.props.total = props.total || 0
   }
 
   render() {
     return (
       <View style={[styles.cardBase,]}>
         <View style={[styles.cardItem,styles.left]}>
-          {this.props.cupons>0 && <Ionicons name="md-checkmark" size={32} color="green" />}
+          {this.props.total>0 && <Ionicons name="md-checkmark" size={32} color="green" />}
         </View>
         <View style={[styles.cardItem,]}>
-          {this.props.cupons>1 && <Ionicons name="md-checkmark" size={32} color="green" />}
+          {this.props.total>1 && <Ionicons name="md-checkmark" size={32} color="green" />}
         </View>
         <View style={[styles.cardItem,]}>
-          {this.props.cupons>2 && <Ionicons name="md-checkmark" size={32} color="green" />}
+          {this.props.total>2 && <Ionicons name="md-checkmark" size={32} color="green" />}
         </View>
         <View style={[styles.cardItem,]}>
-          {this.props.cupons>3 && <Ionicons name="md-checkmark" size={32} color="green" />}
+          {this.props.total>3 && <Ionicons name="md-checkmark" size={32} color="green" />}
         </View>
         <View style={[styles.cardItem,]}>
-          {this.props.cupons>4 && <Ionicons name="md-checkmark" size={32} color="green" />}
+          {this.props.total>4 && <Ionicons name="md-checkmark" size={32} color="green" />}
         </View>
         <View style={[styles.cardItem,styles.right]}>
-          {this.props.cupons>5 && <Ionicons name="md-checkmark" size={32} color="green" />}
+          {this.props.total>5 && <Ionicons name="md-checkmark" size={32} color="green" />}
         </View>
       </View>
     );

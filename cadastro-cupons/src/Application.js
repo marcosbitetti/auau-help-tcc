@@ -25,6 +25,7 @@ import Avisos from './screens/Avisos'
 import PdV from './screens/PdV'
 import Campanha from './screens/Campanha'
 import OAB from './screens/OAB'
+import Loja from './screens/Loja'
 
 if (__DEV__) {
   activateKeepAwake();
@@ -60,6 +61,7 @@ class Application extends React.Component {
         {this.props.page=='pdv' && <PdV/>}
         {this.props.page=='campanha' && <Campanha/>}
         {this.props.page=='oab' && <OAB/>}
+        {this.props.page=='loja' && <Loja/>}
         </View>
 
         <Image

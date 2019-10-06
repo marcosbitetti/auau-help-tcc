@@ -45,7 +45,6 @@ class Home extends React.Component {
             onPress={() => this.props.navigate('avisos') }
             />
 
-          <Cupons />
         </View>
       </ScrollView>
     );

@@ -16,12 +16,13 @@ const ACT = {
   GET_OAB: 'GET_OAB',
   GET_OAB_SUCCESS: 'GET_OAB_SUCCESS',
   GET_OAB_FAIL: 'GET_OAB_FAIL',
+  SET_LOJA: 'SET_LOJA',
 }
 
 // Controla a navegacao de telas
 let navigationStack = []
 
-exports.navigate = (dst) => {
+const navigate = (dst) => {
   if (dst=='back') navigationStack.pop(); else navigationStack.push(dst);
   if(dst=='home') navigationStack.length = 0
   if (navigationStack.length==0) navigationStack.push('home')
@@ -29,6 +30,7 @@ exports.navigate = (dst) => {
   return {type:ACT.NAVIGATE, payload:{page:dst}}
 }
 
+exports.navigate = navigate
 
 exports.getLojas = () => {
   return {
@@ -107,6 +109,15 @@ exports.getOAB = () => {
         },
       },
     },
+  }
+}
+
+exports.setLoja = (loja) => {
+  return {
+    type: ACT.SET_LOJA,
+    payload: {
+      loja:loja
+    }
   }
 }
 

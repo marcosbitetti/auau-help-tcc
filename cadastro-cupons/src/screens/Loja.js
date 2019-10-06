@@ -6,14 +6,15 @@ import { View,
       FlatList,
       StyleSheet,
       Image,
+      Linking,
       TouchableOpacity} from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
 
 import {colors} from '../Styles'
 import styles from '../Styles'
-import {getLojas,navigate,setLoja} from '../actions'
 import Logo from '../components/Logo'
+import Cupons from '../components/Cupons'
 import HeaderBack from '../components/HeaderBack'
 
 
@@ -28,42 +29,32 @@ class Lojas extends React.Component {
   }
 
   async componentDidMount() {
-    this.props.getLojas()
   }
 
   render() {
+    let {loja} = this.props
+
     return (
       <View style={[styles.screen,]}>
         <View style={[styles.screenContent,]}>
-          <Logo style={{marginTop: 8,}}/>
+          <Logo style={{marginBottom: 24,}}/>
 
-          <FlatList
-            style={[styles.containerList]}
-            data={this.props.lojas}
-            keyExtractor={item => item.id}
-            numColumns={2}
-            renderItem={({item,index,separators}) => {
-              return (
-                <TouchableOpacity
-                  onPress={ () => { this.props.setLoja(item); this.props.navigate('loja') } }
-                  style={[styles.listItem,]}>
-                  {item.imagem!=null &&
-                   <View
-                    style={[{width:'100%',height:StyleSheet.flatten(styles.listItem).minHeight},styles.listItemImage,]} >
-                    <Image
-                      source={{
-                        uri: this.props.api + item.imagem,
-                        cache: 'only-if-cached',
-                      }}
-                      resizeMode={'stretch'}
-                      style={[{width:'100%',height:'100%',},]}
-                      />
-                    </View>
-                  }
-                </TouchableOpacity>
-              )
+          <Image
+            source={{
+              uri: this.props.api + loja.imagem,
+              cache: 'only-if-cached',
             }}
+            resizeMode={'stretch'}
+            style={[{width:'100%',height:220,},{marginBottom: 24,}]}
             />
+
+            <TouchableOpacity style={[s2.linkButton,{marginBottom: 4,}]} onPress={ () => Linking.openURL('mailto:'+loja.contato) }>
+              <Text style={[s2.linkText,]}>{ loja.contato }</Text>
+            </TouchableOpacity>
+
+            <Text style={[s2.paragraph,]}>{loja.cupom}</Text>
+
+            <Cupons total={loja.vendas}/>
 
             <HeaderBack />
 
@@ -99,20 +90,46 @@ const s2 = StyleSheet.create({
     flex: 1,
     borderColor: 'black',
     borderWidth: 1,
+  },
+  linkButton: {
+
+  },
+  linkText: {
+    color: 'red',
+    fontSize: 22,
+    fontWeight: '400',
+    textShadowColor: 'rgba(0, 0, 0, 0.85)',
+    textShadowOffset: {width: 1, height: 1},
+    textShadowRadius: 4
+  },
+  paragraph: {
+    margin: 24,
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    backgroundColor: '#fff',
+    padding: 8,
+
+    shadowColor: "#000",
+    shadowOffset: {
+    	width: 0,
+    	height: 2,
+    },
+    shadowOpacity: 0.98,
+    shadowRadius: 2.0,
+    elevation: 4,
   }
 })
 
 
 // conecta o reduxer com o application
 const mapStateToProps = store => ({
-  lojas: store.appState.lojas,
+  loja: store.appState.loja,
   api: store.appState.api,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators( {
-  getLojas,
-  setLoja,
-  navigate
+
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Lojas)
