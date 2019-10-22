@@ -44,7 +44,7 @@ class Avisos extends React.Component {
             />
 
           <Card
-            title="OAB"
+            title="Comissão de proteção dos direitos dos animais (OAB)"
             onPress={() => this.props.navigate('oab') }
             />
 

@@ -1,0 +1,41 @@
+Arguments: 
+  /usr/bin/node /usr/share/yarn/bin/yarn.js deploy
+
+PATH: 
+  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/opt/android/sdk/emulator:/opt/android/sdk/tools:/opt/android/sdk/platform-tools
+
+Yarn version: 
+  1.19.1
+
+Node version: 
+  10.15.2
+
+Platform: 
+  linux x64
+
+Trace: 
+  SyntaxError: /home/bitetti/clientes/bill/server/package.json: Unexpected token } in JSON at position 214
+      at JSON.parse (<anonymous>)
+      at /usr/share/yarn/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/share/yarn/lib/cli.js:304:30)
+      at /usr/share/yarn/lib/cli.js:315:13
+
+npm manifest: 
+  {
+    "name": "AuAuHelp",
+    "version": "1.0.0",
+    "description": "TCC project",
+    "main": "index.php",
+    "license": "MIT",
+    "private": true,
+    "scripts": {
+      "deploy": "gcloud app deploy --project auauhelp1"
+    },
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

@@ -2,11 +2,19 @@
 ini_set('display_errors', 'On');
 error_reporting(E_ALL);
 
-$dbConfig = [
+// localhost
+/*$dbConfig = [
   'host' => 'localhost',
   'name' => '3156835_app',
   'user' => 'root',
   'pass' => '',
+];*/
+// google cloud
+$dbConfig = [
+  'host' => '35.238.179.54',
+  'name' => 'app',//'auauhelp1:us-central1:auauhelp',
+  'user' => 'root',
+  'pass' => 'au23@help89',
 ];
 
 class Loja {

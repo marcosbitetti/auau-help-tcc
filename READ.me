@@ -1,0 +1,29 @@
+pass:au23@help89
+
+
+    gcloud sql instances create auauhelp
+    gcloud sql databases create app --instance=auauhelp
+    gcloud sql users set-password root --host=% --instance=auauhelp --password=PASS
+
+conectar ao banco:
+
+use o tutorial: https://cloud.google.com/sql/docs/mysql/connect-admin-proxy?hl=pt-br
+rode a query: db.sql
+
+
+fazer deploy:
+yarn deploy
+depois responder Y
+
+yarn browse
+
+
+https://www.youtube.com/watch?v=lKSEaOJSbRE
+
+gcloud sql users set-password root --host=& --instance=auauhelp --pasword PASS
+wine cloud_sql_proxy_x64.exe -dir=/cloudsql1 -instances=auauhelp1:southamerica-east1:app --host 0.0.0.0 --port 3307
+
+wine cloud_sql_proxy_x64.exe -dir=/cloudsql1 -instances=auauhelp1:us-central1:auauhelp -credential_file=admin-auauhelp1.json
+
+
+./cloud_sql_proxy.linux -dir=./cloudsql1 -instances=auauhelp1:us-central1:auauhelp -credential_file=admin-auauhelp1.json

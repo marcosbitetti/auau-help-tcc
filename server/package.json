@@ -1,0 +1,13 @@
+{
+  "name": "AuAuHelp",
+  "version": "1.0.0",
+  "description": "TCC project",
+  "main": "index.php",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "deploy": "gcloud app deploy --project auauhelp1",
+    "browse": "gcloud app browse",
+    "log": "gcloud app logs tail -s default"
+  }
+}

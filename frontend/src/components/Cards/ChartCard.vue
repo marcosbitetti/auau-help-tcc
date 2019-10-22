@@ -6,9 +6,10 @@
     >
       <!--<div :id="chartId" class="ct-chart"></div>-->
       <figure class="card-vide-header">
-        <video autoplay loop muted>
+        <!--<video autoplay loop muted>
           <source :src="cardVideo" type="video/mp4" />
-        </video>
+        </video>-->
+        <img :src="cardVideo" :alt="cardVideo" />
       </figure>
     </md-card-header>
 
@@ -27,7 +28,7 @@ export default {
   props: {
     cardVideo: {
       type: String,
-      default: require("@/assets/videos/vokoscreen-2019-09-19_08-25-43.mp4")
+      default: require("@/assets/img/thumb1.jpg")
     },
     footerText: {
       type: String,

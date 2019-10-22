@@ -145,15 +145,15 @@ export default {
   props: {
     cardVideo1: {
       type: String,
-      default: require("@/assets/videos/vokoscreen-2019-09-19_08-25-43.mp4")
+      default: require("@/assets/img/thumb1.jpg")
     },
     cardVideo2: {
       type: String,
-      default: require("@/assets/videos/vokoscreen-2019-09-19_12-47-23.mp4")
+      default: require("@/assets/img/thumb2.jpg")
     },
     cardVideo3: {
       type: String,
-      default: require("@/assets/videos/vokoscreen-2019-09-19_12-48-30.mp4")
+      default: require("@/assets/img/thumb3.jpg")
     },
   },
   data() {

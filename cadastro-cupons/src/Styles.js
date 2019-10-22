@@ -7,7 +7,7 @@ const logoHeight = 38
 
 const colors = {
   background1: '#f7f7f7',
-  background2: '#c3c3c3',
+  background2: 'rgb(73,19,35)', //'#c3c3c3', // buttons cards
   background3: '#aaaaaa',
   opacityMedium: 'rgba(0,0,0,0.7)',
   loadingColor: '#c3c3c3',

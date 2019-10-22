@@ -21,7 +21,7 @@ class Card extends React.Component {
 
     return (
       <TouchableOpacity style={styles.appCard} onPress={this.props.onPress}>
-        <Text style="color:'black'">{ this.props.title }</Text>
+        <Text style={{color:'#f5f5dc'}}>{ this.props.title }</Text>
       </TouchableOpacity>
     );
   }

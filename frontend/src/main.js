@@ -50,8 +50,9 @@ Vue.use(VueAxios, axios);
 Vue.use( CKEditor );
 
 Vue.prototype.$api = {
-  baseUrl: 'http://bill.dev.br',
+  //baseUrl: 'http://bill.dev.br',
   //baseUrl: 'http://0d9c6467.ngrok.io',
+  baseUrl: 'https://auauhelp1.appspot.com',
   timeout: 10000,
   headers: {
   }
