@@ -13,7 +13,7 @@
 
             <div class="md-layout-item image">
               <md-card-media >
-                <img :src="$api.baseUrl+'/'+item.imagem" alt="icone" v-on:click="uploadImage(item)">
+                <img :src="item.content" xxxsrc="$api.baseUrl+'/'+item.imagem" :lowsrc="lowSrc" alt="icone" v-on:click="uploadImage(item)">
               </md-card-media>
             </div>
 
@@ -80,6 +80,10 @@ export default {
     OrderedTable
   },
   props: {
+    lowSrc: {
+      type: String,
+      default: require("@/assets/img/favicon.png")
+    },
   },
   data() {
     return {

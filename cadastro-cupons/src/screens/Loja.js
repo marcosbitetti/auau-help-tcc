@@ -41,7 +41,7 @@ class Lojas extends React.Component {
 
           <Image
             source={{
-              uri: this.props.api + loja.imagem,
+              uri: loja.content,
               cache: 'only-if-cached',
             }}
             resizeMode={'stretch'}

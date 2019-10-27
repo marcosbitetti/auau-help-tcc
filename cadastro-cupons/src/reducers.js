@@ -6,7 +6,7 @@ import axiosMiddleware from 'redux-axios-middleware';
 import ACT from './actions'
 
 //const baseURL = 'http://192.168.0.236/'
-const baseURL = 'http://e2316292.ngrok.io/'
+const baseURL = 'https://auauhelp1.appspot.com'
 
 const client = axios.create({
   baseURL: baseURL,

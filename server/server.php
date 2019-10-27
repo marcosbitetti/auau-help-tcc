@@ -11,7 +11,8 @@ error_reporting(E_ALL);
 ];*/
 // google cloud
 $dbConfig = [
-  'host' => '35.238.179.54',
+  'host' => 'mysql:unix_socket=/cloudsql/auauhelp1:us-central1:auauhelp',//'35.238.179.54',
+  'appHost' => 'mysql:unix_socket=/cloudsql/auauhelp1:us-central1:auauhelp;dbname=app',
   'name' => 'app',//'auauhelp1:us-central1:auauhelp',
   'user' => 'root',
   'pass' => 'au23@help89',
@@ -56,7 +57,8 @@ if ($_SERVER['REQUEST_METHOD']=='OPTIONS') {
 $db = null;
 
 try {
-  $db = new PDO('mysql:host='.$dbConfig['host'].';dbname='.$dbConfig['name'].';charset=utf8', $dbConfig['user'], $dbConfig['pass']);
+  //$db = new PDO('mysql:host='.$dbConfig['host'].';dbname='.$dbConfig['name'].';charset=utf8', $dbConfig['user'], $dbConfig['pass']);
+  $db = new PDO($dbConfig['appHost'].';charset=utf8', $dbConfig['user'], $dbConfig['pass']);
 } catch (PDOException $e) {
   error($e->getMessage());
 }
@@ -69,7 +71,7 @@ if (!property_exists($request,'action')) $request->action = 'help';
 
 switch ($request->action) {
   case 'getLojas':
-    $st = $db->prepare('SELECT * from lojas');
+    $st = $db->prepare('SELECT id,nome,imagem,destaque,contato,cupom,vendas,(SELECT md.content FROM medias md LEFT JOIN medias_refs mrf ON mrf.id_media=md.id WHERE mrf.id_loja=l.id ORDER BY md.id DESC LIMIT 1) AS content from lojas l');
     $st->setFetchMode(PDO::FETCH_CLASS, 'Loja');
     $st->execute();
     $res = (array) $st->fetchAll();
@@ -78,7 +80,7 @@ switch ($request->action) {
     break;
 
   case 'getEmpresas':
-    $st = $db->prepare('SELECT * from empresas');
+    $st = $db->prepare('SELECT id,nome,imagem,destaque,(SELECT md.content FROM medias md LEFT JOIN medias_refs mrf ON mrf.id_media=md.id WHERE mrf.id_empresa=e.id ORDER BY md.id DESC LIMIT 1) AS content from empresas e');
     $st->setFetchMode(PDO::FETCH_CLASS, 'Empresa');
     $st->execute();
     $res = (array) $st->fetchAll();
@@ -91,11 +93,11 @@ switch ($request->action) {
     list($mime,$content) = explode(',',$request->data);
     $fileType = preg_replace("/(.*\/)(\w+)(\;.*)/","$2",$mime);
     $file = $UPLOADS.str_replace(' ','_',strval(microtime())) . '.' . $fileType;
-    $ifp = fopen( $PATH.$file, 'wb' );
-    fwrite( $ifp, base64_decode( $content ) );
-    fclose( $ifp );
-    $st = $db->prepare('INSERT INTO medias (path,type) VALUES(:path,:type);', array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-    if ($st->execute(array(':path'=>$file, ':type'=>0))) {
+    //$ifp = fopen( $PATH.$file, 'wb' );
+    //fwrite( $ifp, base64_decode( $content ) );
+    //fclose( $ifp );
+    $st = $db->prepare('INSERT INTO medias (path,type,content) VALUES(:path,:type,:data);', array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+    if ($st->execute(array(':path'=>$file, ':type'=>0,':data'=>$request->data))) {
       $st->closeCursor();
       $id = $db->lastInsertId();
       $st2 = $db->prepare('INSERT INTO medias_refs (id_loja,id_empresa,id_media) VALUES(:loja,:empresa,:media);', array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));

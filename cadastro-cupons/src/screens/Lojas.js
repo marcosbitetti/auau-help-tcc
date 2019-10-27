@@ -52,7 +52,7 @@ class Lojas extends React.Component {
                     style={[{width:'100%',height:StyleSheet.flatten(styles.listItem).minHeight},styles.listItemImage,]} >
                     <Image
                       source={{
-                        uri: this.props.api + item.imagem,
+                        uri: item.content,
                         cache: 'only-if-cached',
                       }}
                       resizeMode={'stretch'}

@@ -2073,6 +2073,13 @@ expo@^34.0.1:
     unimodules-task-manager-interface "~3.0.0"
     uuid-js "^0.7.5"
 
+expokit@^35.0.2:
+  version "35.0.2"
+  resolved "https://registry.yarnpkg.com/expokit/-/expokit-35.0.2.tgz#2b432d82168d4c48593034426261464215c6cd88"
+  integrity sha512-POOp0aX3iC4BvMCW6WDmvJPCfAiIQn0cPI8epXY4aZ+HeSejSsnDJpoBxacIuc+tzd+fhg4xD/ZVqJAYYdIR+w==
+  dependencies:
+    jsc-android "^245459.0.0"
+
 extend-shallow@^1.1.2:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/extend-shallow/-/extend-shallow-1.1.4.tgz#19d6bf94dfc09d76ba711f39b872d21ff4dd9071"
@@ -2885,6 +2892,11 @@ js-yaml@^3.13.1:
   dependencies:
     argparse "^1.0.7"
     esprima "^4.0.0"
+
+jsc-android@^245459.0.0:
+  version "245459.0.0"
+  resolved "https://registry.yarnpkg.com/jsc-android/-/jsc-android-245459.0.0.tgz#e584258dd0b04c9159a27fb104cd5d491fd202c9"
+  integrity sha512-wkjURqwaB1daNkDi2OYYbsLnIdC/lUM2nPXQKRs5pqEU9chDg435bjvo+LSaHotDENygHQDHe+ntUkkw2gwMtg==
 
 jsesc@^2.5.1:
   version "2.5.2"

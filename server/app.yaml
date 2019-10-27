@@ -26,3 +26,8 @@ handlers:
 # Serve php scripts.
 - url: /(.+\.php)$
   script: \1
+
+env_variables:
+  MYSQL_USER: root
+  MYSQL_PASS: au23@help89
+  MYSQL_DNS: mysql:unix_socket=/cloudsql/auauhelp1:us-central1:auauhelp;dbname=app
