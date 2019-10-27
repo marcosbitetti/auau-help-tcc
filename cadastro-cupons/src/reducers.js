@@ -36,20 +36,23 @@ const appReducer = (state = initialAppState,action) => {
       return {...state, lojas:[]}
     case ACT.GET_LOJAS_SUCCESS:
       //console.log(action.payload.data.data)
-      let {data} = action.payload.data
+      let dataL = action.payload.data.data
       // garante visualizacao de thumb
-      if (data.length%2==1) data.push( {id:0,imagem:null} )
-      return {...state, lojas:data}
+      if (dataL.length%2==1) dataL.push( {id:0,imagem:null} )
+      return {...state, lojas:dataL}
     case ACT.GET_LOJAS_FAIL:
       //console.log(action.payload)
       return {...state, lojas:[]}
 
     case ACT.GET_EMPRESAS:
-      //console.log(action.payload)
+      //console.log(action.payload)aa
       return {...state, empresas:[]}
     case ACT.GET_EMPRESAS_SUCCESS:
       //console.log(action.payload.data.data)
-      return {...state, empresas:action.payload.data.data}
+      let dataE = action.payload.data.data
+      dataE.splice(1,0,{})
+      if (dataE.length%2==1) dataE.push( {id:0,imagem:null} )
+      return {...state, empresas:dataE}
     case ACT.GET_EMPRESAS_FAIL:
       //console.log(action.payload)
       return {...state, empresas:[]}

@@ -80,7 +80,7 @@ switch ($request->action) {
     break;
 
   case 'getEmpresas':
-    $st = $db->prepare('SELECT id,nome,imagem,destaque,(SELECT md.content FROM medias md LEFT JOIN medias_refs mrf ON mrf.id_media=md.id WHERE mrf.id_empresa=e.id ORDER BY md.id DESC LIMIT 1) AS content from empresas e');
+    $st = $db->prepare('SELECT id,nome,imagem,destaque,(SELECT md.content FROM medias md LEFT JOIN medias_refs mrf ON mrf.id_media=md.id WHERE mrf.id_empresa=e.id ORDER BY md.id DESC LIMIT 1) AS content from empresas e ORDER BY destaque DESC');
     $st->setFetchMode(PDO::FETCH_CLASS, 'Empresa');
     $st->execute();
     $res = (array) $st->fetchAll();
